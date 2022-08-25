@@ -94,26 +94,27 @@ function midiMessageReceived(event) {
   const timestamp = Date.now();
 
   console.log("received:", event.data)
+  outputIn.innerHTML = event.data;
 
-  // Note that not all MIDI controllers send a separate NOTE_OFF command for every NOTE_ON.
-  if (cmd === NOTE_OFF || (cmd === NOTE_ON && velocity === 0)) {
-    outputIn.innerHTML += `🎧 from ${event.srcElement.name} note off: pitch:<b>${pitch}</b>, velocity: <b>${velocity}</b> <br/>`;
+  // // Note that not all MIDI controllers send a separate NOTE_OFF command for every NOTE_ON.
+  // if (cmd === NOTE_OFF || (cmd === NOTE_ON && velocity === 0)) {
+  //   outputIn.innerHTML += `🎧 from ${event.srcElement.name} note off: pitch:<b>${pitch}</b>, velocity: <b>${velocity}</b> <br/>`;
   
-    // Complete the note!
-    const note = notesOn.get(pitch);
-    if (note) {
-      outputIn.innerHTML += `🎵 pitch:<b>${pitch}</b>, duration:<b>${timestamp - note}</b> ms. <br>`;
-      notesOn.delete(pitch);
-    }
-  } else if (cmd === NOTE_ON) {
-    outputIn.innerHTML += `🎧 from ${event.srcElement.name} note off: pitch:<b>${pitch}</b>, velocity: <b>${velocity}</b> <br/>`;
+  //   // Complete the note!
+  //   const note = notesOn.get(pitch);
+  //   if (note) {
+  //     outputIn.innerHTML += `🎵 pitch:<b>${pitch}</b>, duration:<b>${timestamp - note}</b> ms. <br>`;
+  //     notesOn.delete(pitch);
+  //   }
+  // } else if (cmd === NOTE_ON) {
+  //   outputIn.innerHTML += `🎧 from ${event.srcElement.name} note off: pitch:<b>${pitch}</b>, velocity: <b>${velocity}</b> <br/>`;
     
-    // One note can only be on at once.
-    notesOn.set(pitch, timestamp);
-  }
+  //   // One note can only be on at once.
+  //   notesOn.set(pitch, timestamp);
+  // }
   
   // Scroll to the bottom of this div.
-  outputIn.scrollTop = outputIn.scrollHeight;
+  // outputIn.scrollTop = outputIn.scrollHeight;
 }
 
 function sendMidiMessage(pitch, velocity, duration) {

@@ -60,6 +60,7 @@ button.copy.active {
   max-height: 200px;
   overflow: auto;
   margin-bottom: 24px;
+  border: 1px solid red;
 }
 
 .footer {
