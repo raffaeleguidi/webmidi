@@ -93,7 +93,7 @@ function midiMessageReceived(event) {
   // You can use the timestamp to figure out the duration of each note.
   const timestamp = Date.now();
 
-  console.log("received:", event.data)
+  console.log("received", event.data)
   outputIn.innerHTML = event.data;
 
   // // Note that not all MIDI controllers send a separate NOTE_OFF command for every NOTE_ON.

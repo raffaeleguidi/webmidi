@@ -45,10 +45,12 @@
     <!-- <p>To test this, press one of these buttons.</p> -->
     <!-- <button onclick="sendMidiControl(0, 0)">WAH on</button>
     <button onclick="sendMidiControl(0, 100)">WAH off</button> -->
+    <button onclick="sendMidiControl(2, 14)">RF on</button>
+    <button onclick="sendMidiControl(2, 78)">RF off</button>
     <button onclick="sendMidiControl(2, 0)">EFX on</button>
     <button onclick="sendMidiControl(2, 100)">EFX off</button>
-    <button onclick="sendMidiControl(7, 0)">MOD on</button>
-    <button onclick="sendMidiControl(7, 100)">MOD off</button>
+    <button onclick="sendMidiControl(6, 126)">MOD on</button>
+    <button onclick="sendMidiControl(6, 100)">MOD off</button>
     <button onclick="sendMidiControl(8, 0)">DLY on</button>
     <button onclick="sendMidiControl(8, 100)">DLY off</button>
         
@@ -143,7 +145,24 @@ initDevices(midi); // see the next section!
   }
 }</code></pre>
     
-    --> <h2>Sending a message to an output device</h2>
+    --> 
+
+    <h2>Sending a CC to an output device</h2>
+    <p>To test this, press one of these buttons and listen to the audio coming out of your output device.</p>
+    <b>CC:</b> <input id="inputCC" value="0"><br>
+    <b>Value:</b> <input id="inputValue" value="0"><br>
+    <br>
+    <button onclick="sendMidiControl(inputCC.value, inputValue.value)">Send!</button>
+
+    <h2>Sending a Program to an output device</h2>
+    <p>To test this, press one of these buttons and listen to the audio coming out of your output device.</p>
+    <b>PC:</b> <input id="inputPC" value="0"><br>
+    <br>
+    <button onclick="sendMidiProgram(inputPC.value)">Send!</button>
+
+   <!--
+
+    <h2>Sending a message to an output device</h2>
     <p>To test this, press one of these buttons and listen to the audio coming out of your output device.</p>
     <b>Pitch:</b> <input id="inputPitch" value="60"><br>
     <b>Velocity:</b> <input id="inputVelocity" value="100"><br>
@@ -151,7 +170,7 @@ initDevices(midi); // see the next section!
     <br>
     <button onclick="sendMidiMessage(inputPitch.value, inputVelocity.value, inputDuration.value)">Send!</button>
     
-  <!--
+ 
     <button class="copy" onclick="copy(event)">Copy</button> 
     <pre><code>function sendMidiMessage(pitch, velocity, duration) {
   const NOTE_ON = 0x90;
